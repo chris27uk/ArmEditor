@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArmEditor.UI", "ArmEditor.UI\ArmEditor.UI.csproj", "{0D826828-E576-4EBE-8734-6E992F123733}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArmEditor", "ArmEditor\ArmEditor.csproj", "{F7F68CFC-BF8B-419E-95E1-7371D64E3E71}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0D826828-E576-4EBE-8734-6E992F123733}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D826828-E576-4EBE-8734-6E992F123733}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D826828-E576-4EBE-8734-6E992F123733}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D826828-E576-4EBE-8734-6E992F123733}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7F68CFC-BF8B-419E-95E1-7371D64E3E71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7F68CFC-BF8B-419E-95E1-7371D64E3E71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7F68CFC-BF8B-419E-95E1-7371D64E3E71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7F68CFC-BF8B-419E-95E1-7371D64E3E71}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
