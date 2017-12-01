@@ -19,10 +19,10 @@ namespace ArmEditor.UI.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    public class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace ArmEditor.UI.Properties {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ArmEditor.UI.Properties.Resources", typeof(Resources).Assembly);
@@ -51,12 +51,35 @@ namespace ArmEditor.UI.Properties {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
             set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {
+        ///                &quot;position&quot;: {
+        ///                  &quot;x&quot;: 0,
+        ///                  &quot;y&quot;: 0,
+        ///                  &quot;rowSpan&quot;: 4,
+        ///                  &quot;colSpan&quot;: 6
+        ///                },
+        ///                &quot;metadata&quot;: {
+        ///                  &quot;inputs&quot;: [
+        ///                    {
+        ///                      &quot;name&quot;: &quot;ComponentId&quot;,
+        ///                      &quot;value&quot;: {
+        ///                        &quot;SubscriptionId&quot;: &quot;[parameters(&apos;subscriptionId&apos;)]&quot;,
+        ///                        &quot;ResourceGroup&quot;: &quot;[parameters(&apos;resourceGroupName&apos;)]&quot;,
+        ///                   [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string ComponentJson {
+            get {
+                return ResourceManager.GetString("ComponentJson", resourceCulture);
             }
         }
     }

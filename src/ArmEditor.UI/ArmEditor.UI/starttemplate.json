@@ -1,0 +1,578 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "appinsightsName": {
+      "type": "string"
+    },
+    "paymentsQueryDashboardId": {
+      "type": "string"
+    },
+    "paymentsQueryDashboardDisplayName": {
+      "type": "string"
+    },
+    "resourceGroupName": {
+      "type": "string"
+    },
+    "subscriptionId": {
+      "type": "string"
+    }
+  },
+  "variables": {},  
+  "resources": [
+    {
+      "apiVersion": "2015-08-01-preview",
+      "properties": {
+        "lenses": {
+          "0": {
+            "order": 0,
+            "parts": {
+              "0": {
+                "position": {
+                  "x": 0,
+                  "y": 0,
+                  "rowSpan": 4,
+                  "colSpan": 6
+                },
+                "metadata": {
+                  "inputs": [
+                    {
+                      "name": "ComponentId",
+                      "value": {
+                        "SubscriptionId": "[parameters('subscriptionId')]",
+                        "ResourceGroup": "[parameters('resourceGroupName')]",
+                        "Name": "[parameters('appInsightsName')]"
+                      }
+                    },
+                    {
+                      "name": "MetricsExplorerJsonDefinitionId",
+                      "value": "InsightsTimelineMetrics"
+                    },
+                    {
+                      "name": "TimeContext",
+                      "value": {
+                        "durationMs": 86400000,
+                        "createdTime": "2017-09-15T15:20:40.734Z",
+                        "isInitialTime": true,
+                        "grain": 1,
+                        "useDashboardTimeRange": false
+                      }
+                    },
+                    {
+                      "name": "Version",
+                      "value": "1.0"
+                    }
+                  ],
+                  "type": "Extension/AppInsightsExtension/Blade/AspNetOverview/Lens/ApplicationHealthLens/PartInstance/InsightsTimeline_MetricsExplorerPartReferenceOveriew",
+                  "asset": {
+                    "idInputName": "ComponentId",
+                    "type": "ApplicationInsights"
+                  }
+                }
+              },
+              "1": {
+                "position": {
+                  "x": 6,
+                  "y": 0,
+                  "rowSpan": 4,
+                  "colSpan": 6
+                },
+                "metadata": {
+                  "inputs": [
+                    {
+                      "name": "ComponentId",
+                      "value": {
+                        "SubscriptionId": "[parameters('subscriptionId')]",
+                        "ResourceGroup": "[parameters('resourceGroupName')]",
+                        "Name": "[parameters('appInsightsName')]"
+                      }
+                    },
+                    {
+                      "name": "Query",
+                      "value": "requests\r\n| where timestamp > ago(7d) and url !contains \"Health\" and url !contains \"version\"  \r\n| summarize  count() by resultCode, bin(timestamp, 1h)\r\n| render areachart \n"
+                    },
+                    {
+                      "name": "Dimensions",
+                      "value": {
+                        "xAxis": {
+                          "name": "timestamp",
+                          "type": "DateTime"
+                        },
+                        "yAxis": [
+                          {
+                            "name": "count_",
+                            "type": "Int64"
+                          }
+                        ],
+                        "splitBy": [
+                          {
+                            "name": "resultCode",
+                            "type": "String"
+                          }
+                        ],
+                        "aggregation": "Sum"
+                      }
+                    },
+                    {
+                      "name": "Version",
+                      "value": "1.0"
+                    },
+                    {
+                      "name": "DashboardId",
+                      "value": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/dashboards/providers/Microsoft.Portal/dashboards/[parameters('paymentsQueryDashboardId')]"
+                    },
+                    {
+                      "name": "PartId",
+                      "value": "c7be7297-312b-4f33-8952-1798eb023bfc"
+                    },
+                    {
+                      "name": "PartTitle",
+                      "value": "Analytics"
+                    },
+                    {
+                      "name": "PartSubTitle",
+                      "value": "[parameters('resourceGroupName')]"
+                    },
+                    {
+                      "name": "resourceTypeMode",
+                      "value": "components"
+                    }
+                  ],
+                  "type": "Extension/AppInsightsExtension/PartType/AnalyticsAreaChartPart",
+                  "settings": {
+                    "content": {
+                      "dashboardPartTitle": "Api Response Codes (Excluding Health & Version Checks)",
+                      "dashboardPartSubTitle": "Last 7 Days - Per Hour"
+                    }
+                  },
+                  "asset": {
+                    "idInputName": "ComponentId",
+                    "type": "ApplicationInsights"
+                  }
+                }
+              },
+              "2": {
+                "position": {
+                  "x": 12,
+                  "y": 0,
+                  "rowSpan": 4,
+                  "colSpan": 6
+                },
+                "metadata": {
+                  "inputs": [
+                    {
+                      "name": "ComponentId",
+                      "value": {
+                        "SubscriptionId": "[parameters('subscriptionId')]",
+                        "ResourceGroup": "[parameters('resourceGroupName')]",
+                        "Name": "[parameters('appInsightsName')]"
+                      }
+                    },
+                    {
+                      "name": "TimeContext",
+                      "value": {
+                        "durationMs": 86400000,
+                        "createdTime": "2017-09-15T15:21:13.153Z",
+                        "isInitialTime": true,
+                        "grain": 1,
+                        "useDashboardTimeRange": false
+                      }
+                    },
+                    {
+                      "name": "ChartJsonDefinitionId",
+                      "value": "ServerRequestsByPerformanceMetric"
+                    },
+                    {
+                      "name": "BladeId",
+                      "value": "ServerRequestsByPerformanceGridPart"
+                    },
+                    {
+                      "name": "Version",
+                      "value": "1.1"
+                    }
+                  ],
+                  "type": "Extension/AppInsightsExtension/Blade/AspNetOverview/Lens/ServerAndPerformanceChart/PartInstance/ServerRequestsByPerformanceGridReference",
+                  "asset": {
+                    "idInputName": "ComponentId",
+                    "type": "ApplicationInsights"
+                  }
+                }
+              },
+              "3": {
+                "position": {
+                  "x": 0,
+                  "y": 4,
+                  "rowSpan": 4,
+                  "colSpan": 6
+                },
+                "metadata": {
+                  "inputs": [
+                    {
+                      "name": "ComponentId",
+                      "value": {
+                        "SubscriptionId": "[parameters('subscriptionId')]",
+                        "ResourceGroup": "[parameters('resourceGroupName')]",
+                        "Name": "[parameters('appInsightsName')]"
+                      }
+                    },
+                    {
+                      "name": "Query",
+                      "value": "dependencies\r\n| where timestamp > ago(24h)\r\n| extend Dependency = iif(name startswith \"//secrets\", \"Keyvault\", iif(name startswith \"/identity/\" or name contains \"/oauth2/token\", \"Identity Token Exchange\", iif(name startswith \"/dbs/AsosFinancePaymentsQuery\", \"Cosmos Query\",  iif(name startswith \"/dbs/\" or (name == \"/\" and data contains \".documents.azure.com\") or name startswith \"//addresses\", \"Cosmos Internal Query\", name))))\r\n| summarize DurationMilliseconds = percentile(duration, 95) by Dependency, bin(timestamp, 1h)\r\n| render timechart\r\n"
+                    },
+                    {
+                      "name": "Dimensions",
+                      "value": {
+                        "xAxis": {
+                          "name": "timestamp",
+                          "type": "DateTime"
+                        },
+                        "yAxis": [
+                          {
+                            "name": "DurationMilliseconds",
+                            "type": "Double"
+                          }
+                        ],
+                        "splitBy": [
+                          {
+                            "name": "Dependency",
+                            "type": "String"
+                          }
+                        ],
+                        "aggregation": "Sum"
+                      }
+                    },
+                    {
+                      "name": "Version",
+                      "value": "1.0"
+                    },
+                    {
+                      "name": "DashboardId",
+                      "value": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/dashboards/providers/Microsoft.Portal/dashboards/3f633cae-838b-47bf-aa46-1da378d4d0e5"
+                    },
+                    {
+                      "name": "PartId",
+                      "value": "b7532381-109a-492e-b2d9-65c8d7c214bb"
+                    },
+                    {
+                      "name": "PartTitle",
+                      "value": "Analytics"
+                    },
+                    {
+                      "name": "PartSubTitle",
+                      "value": "[parameters('appInsightsName')]"
+                    },
+                    {
+                      "name": "resourceTypeMode",
+                      "value": "components"
+                    }
+                  ],
+                  "type": "Extension/AppInsightsExtension/PartType/AnalyticsLineChartPart",
+                  "settings": {
+                    "content": {
+                      "dashboardPartTitle": "Dependency Times",
+                      "dashboardPartSubTitle": "95th Percentile"
+                    }
+                  },
+                  "asset": {
+                    "idInputName": "ComponentId",
+                    "type": "ApplicationInsights"
+                  }
+                }
+              },
+              "4": {
+                "position": {
+                  "x": 6,
+                  "y": 4,
+                  "rowSpan": 4,
+                  "colSpan": 6
+                },
+                "metadata": {
+                  "inputs": [
+                    {
+                      "name": "ComponentId",
+                      "value": {
+                        "SubscriptionId": "[parameters('subscriptionId')]",
+                        "ResourceGroup": "[parameters('resourceGroupName')]",
+                        "Name": "[parameters('appInsightsName')]"
+                      }
+                    },
+                    {
+                      "name": "Query",
+                      "value": "requests\r\n| where timestamp > ago(1h)\r\n| where url contains \"Health\"\r\n| make-series Count = count(success == \"False\") default=0 on timestamp in range(ago(30m), now() , 5m) by success\r\n| mvexpand timestamp, Count\r\n| project Time = todatetime(timestamp), State = iff(Count == 0, \"Healthy\", \"Failed\")\r\n| order by Time desc\r\n| project format_datetime(Time, 'd-M-yyyy HH:mm:ss'), State \n | project Time, State"
+                    },
+                    {
+                      "name": "Version",
+                      "value": "1.0"
+                    },
+                    {
+                      "name": "DashboardId",
+                      "value": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/dashboards/providers/Microsoft.Portal/dashboards/[parameters('paymentsQueryDashboardId')]"
+                    },
+                    {
+                      "name": "PartId",
+                      "value": "3b60ce9b-1c29-4d62-9af4-594ee18c985a"
+                    },
+                    {
+                      "name": "PartTitle",
+                      "value": "Analytics"
+                    },
+                    {
+                      "name": "PartSubTitle",
+                      "value": "[parameters('resourceGroupName')]"
+                    },
+                    {
+                      "name": "resourceTypeMode",
+                      "value": "components"
+                    }
+                  ],
+                  "type": "Extension/AppInsightsExtension/PartType/AnalyticsGridPart",
+                  "settings": {
+                    "content": {
+                      "dashboardPartTitle": "Service Health",
+                      "dashboardPartSubTitle": "Last 30 Minutes"
+                    }
+                  },
+                  "asset": {
+                    "idInputName": "ComponentId",
+                    "type": "ApplicationInsights"
+                  }
+                }
+              },
+              "5": {
+                "position": {
+                  "x": 12,
+                  "y": 4,
+                  "rowSpan": 4,
+                  "colSpan": 6
+                },
+                "metadata": {
+                  "inputs": [
+                    {
+                      "name": "ComponentId",
+                      "value": {
+                        "SubscriptionId": "[parameters('subscriptionId')]",
+                        "ResourceGroup": "[parameters('resourceGroupName')]",
+                        "Name": "[parameters('appInsightsName')]"
+                      }
+                    },
+                    {
+                      "name": "Query",
+                      "value": "exceptions\r\n| where timestamp > ago(7d) \r\n| project FullTypeName = outerType \r\n| extend ExceptionTypeName = extract(@\"[.\\w]+\\.(\\w+)\", 1, FullTypeName)\r\n| summarize [\"Exception Count\"] = count() by ExceptionTypeName\r\n| order by ['Exception Count'] desc\r\n | project ExceptionTypeName, [\"Exception Count\"]"
+                    },
+                    {
+                      "name": "Version",
+                      "value": "1.0"
+                    },
+                    {
+                      "name": "DashboardId",
+                      "value": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/dashboards/providers/Microsoft.Portal/dashboards/[parameters('paymentsQueryDashboardId')]"
+                    },
+                    {
+                      "name": "PartId",
+                      "value": "f6e4ac32-4c0c-493e-a14b-b61fd87fca27"
+                    },
+                    {
+                      "name": "PartTitle",
+                      "value": "Analytics"
+                    },
+                    {
+                      "name": "PartSubTitle",
+                      "value": "[parameters('resourceGroupName')]"
+                    },
+                    {
+                      "name": "resourceTypeMode",
+                      "value": "components"
+                    }
+                  ],
+                  "type": "Extension/AppInsightsExtension/PartType/AnalyticsGridPart",
+                  "settings": {
+                    "content": {
+                      "dashboardPartTitle": "Top Server Exceptions",
+                      "dashboardPartSubTitle": "Last 7 Days"
+                    }
+                  },
+                  "asset": {
+                    "idInputName": "ComponentId",
+                    "type": "ApplicationInsights"
+                  }
+                }
+              },
+              "6": {
+                "position": {
+                  "x": 0,
+                  "y": 8,
+                  "rowSpan": 4,
+                  "colSpan": 6
+                },
+                "metadata": {
+                  "inputs": [
+                    {
+                      "name": "ComponentId",
+                      "value": {
+                        "SubscriptionId": "[parameters('subscriptionId')]",
+                        "ResourceGroup": "[parameters('resourceGroupName')]",
+                        "Name": "[parameters('appInsightsName')]"
+                      }
+                    },
+                    {
+                      "name": "Query",
+                      "value": "customEvents\n| extend eventProjectionTimeLag = toint(customMeasurements[\"TimeDifferenceBetweenEventCreationAndProjection\"])\n| where name startswith \"TimeDifferenceBetweenEventCreationAndProjection\" and timestamp > ago(24h)\n| project timestamp\n| summarize [\"Count of events in period\"] = count(timestamp) by bin(timestamp, 10m)\n| render timechart\n"
+                    },
+                    {
+                      "name": "Dimensions",
+                      "value": {
+                        "xAxis": {
+                          "name": "timestamp",
+                          "type": "DateTime"
+                        },
+                        "yAxis": [
+                          {
+                            "name": "Count of events in period",
+                            "type": "Int64"
+                          }
+                        ],
+                        "splitBy": [],
+                        "aggregation": "Sum"
+                      }
+                    },
+                    {
+                      "name": "Version",
+                      "value": "1.0"
+                    },
+                    {
+                      "name": "DashboardId",
+                      "value": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/dashboards/providers/Microsoft.Portal/dashboards/[parameters('paymentsQueryDashboardId')]"
+                    },
+                    {
+                      "name": "PartId",
+                      "value": "beb0a04c-9f50-447a-9058-9211f5187250"
+                    },
+                    {
+                      "name": "PartTitle",
+                      "value": "Analytics"
+                    },
+                    {
+                      "name": "PartSubTitle",
+                      "value": "[parameters('resourceGroupName')]"
+                    },
+                    {
+                      "name": "resourceTypeMode",
+                      "value": "components"
+                    }
+                  ],
+                  "type": "Extension/AppInsightsExtension/PartType/AnalyticsLineChartPart",
+                  "settings": {
+                    "content": {
+                      "dashboardPartTitle": "Number of pings from persister",
+                      "dashboardPartSubTitle": "By 10 minute intervals for current day"
+                    }
+                  },
+                  "asset": {
+                    "idInputName": "ComponentId",
+                    "type": "ApplicationInsights"
+                  }
+                }
+              },
+              "7": {
+                "position": {
+                  "x": 6,
+                  "y": 8,
+                  "rowSpan": 4,
+                  "colSpan": 6
+                },
+                "metadata": {
+                  "inputs": [
+                    {
+                      "name": "ComponentId",
+                      "value": {
+                        "SubscriptionId": "[parameters('subscriptionId')]",
+                        "ResourceGroup": "[parameters('resourceGroupName')]",
+                        "Name": "[parameters('appInsightsName')]"
+                      }
+                    },
+                    {
+                      "name": "Query",
+                      "value": "customEvents\r\n| extend eventProjectionTimeLag = toint(customMeasurements[\"TimeDifferenceBetweenEventCreationAndProjection\"])\r\n| where name startswith \"TimeDifferenceBetweenEventCreationAndProjection\" and timestamp > ago(24h)\r\n| project eventProjectionTimeLag, timestamp\r\n| summarize [\"Maximum Event Projection Time\"] = max(eventProjectionTimeLag) by bin(timestamp, 10m)\r\n| render timechart \r\n"
+                    },
+                    {
+                      "name": "Dimensions",
+                      "value": {
+                        "xAxis": {
+                          "name": "timestamp",
+                          "type": "DateTime"
+                        },
+                        "yAxis": [
+                          {
+                            "name": "Maximum Event Projection Time",
+                            "type": "Int32"
+                          }
+                        ],
+                        "splitBy": [],
+                        "aggregation": "Sum"
+                      }
+                    },
+                    {
+                      "name": "Version",
+                      "value": "1.0"
+                    },
+                    {
+                      "name": "DashboardId",
+                      "value": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/dashboards/providers/Microsoft.Portal/dashboards/[parameters('paymentsQueryDashboardId')]"
+                    },
+                    {
+                      "name": "PartId",
+                      "value": "a02a8fa1-b956-43ad-9c8f-29120592ce4f"
+                    },
+                    {
+                      "name": "PartTitle",
+                      "value": "Analytics"
+                    },
+                    {
+                      "name": "PartSubTitle",
+                      "value": "[parameters('resourceGroupName')]"
+                    },
+                    {
+                      "name": "resourceTypeMode",
+                      "value": "components"
+                    }
+                  ],
+                  "type": "Extension/AppInsightsExtension/PartType/AnalyticsLineChartPart",
+                  "settings": {
+                    "content": {
+                      "dashboardPartTitle": "Time Lag Between Creation and Projection of events",
+                      "dashboardPartSubTitle": "By 10 minute intervals for current day"
+                    }
+                  },
+                  "asset": {
+                    "idInputName": "ComponentId",
+                    "type": "ApplicationInsights"
+                  }
+                }
+              }
+
+            }
+          }
+        },
+        "metadata": {
+          "model": {
+            "timeRange": {
+              "value": {
+                "relative": {
+                  "duration": 24,
+                  "timeUnit": 1
+                }
+              },
+              "type": "MsPortalFx.Composition.Configuration.ValueTypes.TimeRange"
+            }
+          }
+        }
+      },
+      "name": "[parameters('paymentsQueryDashboardId')]",
+      "type": "Microsoft.Portal/dashboards",
+      "location": "centralus",
+      "tags": {
+        "hidden-title": "[parameters('paymentsQueryDashboardDisplayName')]"
+      }
+    }
+  ]
+}

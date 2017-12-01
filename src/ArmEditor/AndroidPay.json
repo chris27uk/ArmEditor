@@ -1,0 +1,323 @@
+{
+  "properties": {
+    "lenses": {
+      "0": {
+        "order": 0,
+        "parts": {
+          "0": {
+            "position": {
+              "x": 0,
+              "y": 0,
+              "rowSpan": 4,
+              "colSpan": 6
+            },
+            "metadata": {
+              "inputs": [
+                {
+                  "name": "ComponentId",
+                  "value": {
+                    "SubscriptionId": "4008f612-e161-470c-9f7a-bb3050991223",
+                    "ResourceGroup": "AsPAY-RG-AppInsights-eun-80test",
+                    "Name": "AsPAY-AI-cards-eun-80test"
+                  }
+                },
+                {
+                  "name": "Query",
+                  "value": "requests\n| where timestamp > ago(7d) and url contains \"google\"\n| summarize  count() by resultCode, bin(timestamp, 1h)\n| render areachart\n"
+                },
+                {
+                  "name": "Dimensions",
+                  "value": {
+                    "xAxis": {
+                      "name": "timestamp",
+                      "type": "DateTime"
+                    },
+                    "yAxis": [
+                      {
+                        "name": "count_",
+                        "type": "Int64"
+                      }
+                    ],
+                    "splitBy": [
+                      {
+                        "name": "resultCode",
+                        "type": "String"
+                      }
+                    ],
+                    "aggregation": "Sum"
+                  }
+                },
+                {
+                  "name": "Version",
+                  "value": "1.0"
+                },
+                {
+                  "name": "DashboardId",
+                  "value": "/subscriptions/4008f612-e161-470c-9f7a-bb3050991223/resourceGroups/dashboards/providers/Microsoft.Portal/dashboards/AndroidPayDashboardId"
+                },
+                {
+                  "name": "PartId",
+                  "value": "cdd0e930-5636-4ec8-876f-e700cd32bc36"
+                },
+                {
+                  "name": "PartTitle",
+                  "value": "Analytics"
+                },
+                {
+                  "name": "PartSubTitle",
+                  "value": "AsPAY-AI-cards-eun-80test"
+                },
+                {
+                  "name": "resourceTypeMode",
+                  "value": "components"
+                }
+              ],
+              "type": "Extension/AppInsightsExtension/PartType/AnalyticsAreaChartPart",
+              "settings": {
+                "content": {
+                  "dashboardPartTitle": "Api Response Codes",
+                  "dashboardPartSubTitle": "AsPAY-AI-cards-eun-80test"
+                }
+              },
+              "asset": {
+                "idInputName": "ComponentId",
+                "type": "ApplicationInsights"
+              }
+            }
+          },
+          "1": {
+            "position": {
+              "x": 6,
+              "y": 0,
+              "rowSpan": 4,
+              "colSpan": 6
+            },
+            "metadata": {
+              "inputs": [
+                {
+                  "name": "ComponentId",
+                  "value": {
+                    "SubscriptionId": "4008f612-e161-470c-9f7a-bb3050991223",
+                    "ResourceGroup": "AsPAY-RG-AppInsights-eun-80test",
+                    "Name": "AsPAY-AI-cards-eun-80test"
+                  }
+                },
+                {
+                  "name": "Query",
+                  "value": "requests\n| where timestamp > ago(48h) and url contains \"google/payments/\" and success == \"True\"\n| make-series NumberOfIntents = count() default=0 on timestamp in range(ago(48h), now() , 30m)\n| mvexpand timestamp, NumberOfIntents\n| project toint(NumberOfIntents), todatetime(timestamp)\n| render areachart\n"
+                },
+                {
+                  "name": "Dimensions",
+                  "value": {
+                    "xAxis": {
+                      "name": "timestamp",
+                      "type": "DateTime"
+                    },
+                    "yAxis": [
+                      {
+                        "name": "NumberOfIntents",
+                        "type": "Int32"
+                      }
+                    ],
+                    "splitBy": [],
+                    "aggregation": "Sum"
+                  }
+                },
+                {
+                  "name": "Version",
+                  "value": "1.0"
+                },
+                {
+                  "name": "DashboardId",
+                  "value": "/subscriptions/4008f612-e161-470c-9f7a-bb3050991223/resourceGroups/dashboards/providers/Microsoft.Portal/dashboards/AndroidPayDashboardId"
+                },
+                {
+                  "name": "PartId",
+                  "value": "f42216ab-f1a6-4676-bff1-6aeda485dcc7"
+                },
+                {
+                  "name": "PartTitle",
+                  "value": "Analytics"
+                },
+                {
+                  "name": "PartSubTitle",
+                  "value": "AsPAY-AI-cards-eun-80test"
+                },
+                {
+                  "name": "resourceTypeMode",
+                  "value": "components"
+                }
+              ],
+              "type": "Extension/AppInsightsExtension/PartType/AnalyticsAreaChartPart",
+              "settings": {
+                "content": {
+                  "dashboardPartTitle": "Payment Intent Added",
+                  "dashboardPartSubTitle": "AsPAY-AI-cards-eun-80test"
+                }
+              },
+              "asset": {
+                "idInputName": "ComponentId",
+                "type": "ApplicationInsights"
+              }
+            }
+          },
+          "2": {
+            "position": {
+              "x": 0,
+              "y": 4,
+              "rowSpan": 4,
+              "colSpan": 6
+            },
+            "metadata": {
+              "inputs": [
+                {
+                  "name": "ComponentId",
+                  "value": {
+                    "SubscriptionId": "4008f612-e161-470c-9f7a-bb3050991223",
+                    "ResourceGroup": "AsPAY-RG-AppInsights-eun-80test",
+                    "Name": "AsPAY-AI-cards-eun-80test"
+                  }
+                },
+                {
+                  "name": "Query",
+                  "value": "exceptions\r\n| where timestamp > ago(7d)\r\n| project FullTypeName = outerType\r\n| extend ExceptionTypeName = extract(@\"[.\\w]+\\.(\\w+)\", 1, FullTypeName)\r\n| summarize [\"Exception Count\"] = count() by ExceptionTypeName\r\n| order by ['Exception Count'] desc\r\n| project ExceptionTypeName, [\"Exception Count\"]\n | project ExceptionTypeName, [\"Exception Count\"]"
+                },
+                {
+                  "name": "Version",
+                  "value": "1.0"
+                },
+                {
+                  "name": "DashboardId",
+                  "value": "/subscriptions/4008f612-e161-470c-9f7a-bb3050991223/resourceGroups/dashboards/providers/Microsoft.Portal/dashboards/AndroidPayDashboardId"
+                },
+                {
+                  "name": "PartId",
+                  "value": "a9915d58-d708-4343-91de-34a2304124ed"
+                },
+                {
+                  "name": "PartTitle",
+                  "value": "Analytics"
+                },
+                {
+                  "name": "PartSubTitle",
+                  "value": "AsPAY-AI-cards-eun-80test"
+                },
+                {
+                  "name": "resourceTypeMode",
+                  "value": "components"
+                }
+              ],
+              "type": "Extension/AppInsightsExtension/PartType/AnalyticsGridPart",
+              "settings": {
+                "content": {
+                  "dashboardPartTitle": "Top Server Exceptions",
+                  "dashboardPartSubTitle": "AsPAY-AI-cards-eun-80test"
+                }
+              },
+              "asset": {
+                "idInputName": "ComponentId",
+                "type": "ApplicationInsights"
+              }
+            }
+          },
+          "3": {
+            "position": {
+              "x": 6,
+              "y": 4,
+              "rowSpan": 4,
+              "colSpan": 6
+            },
+            "metadata": {
+              "inputs": [
+                {
+                  "name": "ComponentId",
+                  "value": {
+                    "SubscriptionId": "4008f612-e161-470c-9f7a-bb3050991223",
+                    "ResourceGroup": "AsPAY-RG-AppInsights-eun-80test",
+                    "Name": "AsPAY-AI-cards-eun-80test"
+                  }
+                },
+                {
+                  "name": "Query",
+                  "value": "requests\n| where resultCode == 400 and timestamp > ago(7d) and isnotnull(customDimensions.ErrorCodes) \n| project ErrorCodes = split(customDimensions.ErrorCodes, \",\")\n| mvexpand ErrorCodes\n| summarize  Rejections = count() by tostring(ErrorCodes)\n| render piechart \n"
+                },
+                {
+                  "name": "Dimensions",
+                  "value": {
+                    "xAxis": {
+                      "name": "ErrorCodes",
+                      "type": "String"
+                    },
+                    "yAxis": [
+                      {
+                        "name": "Rejections",
+                        "type": "Int64"
+                      }
+                    ],
+                    "splitBy": [],
+                    "aggregation": "Sum"
+                  }
+                },
+                {
+                  "name": "Version",
+                  "value": "1.0"
+                },
+                {
+                  "name": "DashboardId",
+                  "value": "/subscriptions/4008f612-e161-470c-9f7a-bb3050991223/resourceGroups/dashboards/providers/Microsoft.Portal/dashboards/AndroidPayDashboardId"
+                },
+                {
+                  "name": "PartId",
+                  "value": "b8f7c614-f4fa-420a-976d-21e0bfd383c3"
+                },
+                {
+                  "name": "PartTitle",
+                  "value": "Analytics"
+                },
+                {
+                  "name": "PartSubTitle",
+                  "value": "AsPAY-AI-cards-eun-80test"
+                },
+                {
+                  "name": "resourceTypeMode",
+                  "value": "components"
+                }
+              ],
+              "type": "Extension/AppInsightsExtension/PartType/AnalyticsDonutPart",
+              "settings": {
+                "content": {
+                  "dashboardPartTitle": "Validation Failures",
+                  "dashboardPartSubTitle": "AsPAY-AI-cards-eun-80test"
+                }
+              },
+              "asset": {
+                "idInputName": "ComponentId",
+                "type": "ApplicationInsights"
+              }
+            }
+          }
+        }
+      }
+    },
+    "metadata": {
+      "model": {
+        "timeRange": {
+          "value": {
+            "relative": {
+              "duration": 24,
+              "timeUnit": 1
+            }
+          },
+          "type": "MsPortalFx.Composition.Configuration.ValueTypes.TimeRange"
+        }
+      }
+    }
+  },
+  "id": "/subscriptions/4008f612-e161-470c-9f7a-bb3050991223/resourceGroups/Dashboards/providers/Microsoft.Portal/dashboards/Android-Payt80",
+  "name": "Android-Payt80",
+  "type": "Microsoft.Portal/dashboards",
+  "location": "centralus",
+  "tags": {
+    "hidden-title": "Android-Pay t80"
+  }
+}

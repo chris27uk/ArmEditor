@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("ArmEditor")]
+[assembly: AssemblyTitle("ArmEditor.UI")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("ASOS.com")]
-[assembly: AssemblyProduct("ArmEditor")]
+[assembly: AssemblyProduct("ArmEditor.UI")]
 [assembly: AssemblyCopyright("Copyright © ASOS.com 2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("78646b20-051d-4ad0-9ffe-4f84c1606930")]
+[assembly: Guid("79dc3223-27ff-4ea8-8274-21d49ed8bd0d")]
 
 // Version information for an assembly consists of the following four values:
 //
