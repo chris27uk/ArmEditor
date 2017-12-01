@@ -70,5 +70,27 @@ namespace ArmEditor.UI
                 }
             }
         }
+
+        private void toolStripButtonSaveParameters_Click(object sender, EventArgs e)
+        {
+            using (SaveFileDialog dialog = new SaveFileDialog())
+            {
+                if (dialog.ShowDialog(this) == DialogResult.OK)
+                {
+                    File.WriteAllText(dialog.FileName, ParamReplace.GetParameters(Path.GetFileNameWithoutExtension(dialog.FileName)));
+                }
+            }
+        }
+
+        private void toolStripButton4_Click(object sender, EventArgs e)
+        {
+            using (SaveFileDialog dialog = new SaveFileDialog())
+            {
+                if (dialog.ShowDialog(this) == DialogResult.OK)
+                {
+                    File.WriteAllText(dialog.FileName, DashReplace.ParameteriseText(this.template.ToString()));
+                }
+            }
+        }
     }
 }
